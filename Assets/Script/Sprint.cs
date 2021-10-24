@@ -27,7 +27,7 @@ public class Sprint : MonoBehaviour
 
         if(stamina < totalStamina && !Input.GetKey(KeyCode.LeftShift))
         {
-            stamina += 0.25f;
+            stamina += 0.15f;
         }
 
         if(staminaBar != null)

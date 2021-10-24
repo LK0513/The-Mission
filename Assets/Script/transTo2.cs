@@ -8,6 +8,6 @@ public class transTo2 : MonoBehaviour
 
     void OnEnable()
     {
-       SceneManager.LoadScene("second", LoadSceneMode.Single);
+       SceneManager.LoadScene("Second", LoadSceneMode.Single);
     }
 }

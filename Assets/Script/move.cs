@@ -8,7 +8,7 @@ public class move : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D bc;
     [SerializeField] private LayerMask lm;
-    public float moves = 3;
+    public float moves = 5;
     public float jumpS = 10;
 
     int counter = 0;
@@ -60,6 +60,10 @@ public class move : MonoBehaviour
         if(isRunning)
         {
             moves = 10;
+        }
+        else
+        {
+            moves = 5;
         }
 
         //jump
