@@ -23,7 +23,9 @@ public class move : MonoBehaviour
 
     //respawn
     private Vector3 respawnPoint;
-    public GameObject Death;
+    //death bar
+    public GameObject DeathDetector;
+
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -93,7 +95,9 @@ public class move : MonoBehaviour
         //counter = 0;
         transform.localScale = characterScale;
 
-
+        //move death bar with player
+        DeathDetector.transform.position = new Vector2(transform.position.x, DeathDetector.transform.position.y);
+            
     }
     private bool IsGrounded()
     {
@@ -106,13 +110,20 @@ public class move : MonoBehaviour
     {
         if(collision.tag == "Death")
         {
-            //respawn player to the start
+            //respawn player to the save point
             transform.position = respawnPoint;
             
         }
         else if(collision.tag == "Respawn")
         {
             respawnPoint = transform.position;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            transform.position = respawnPoint;
         }
     }
 }

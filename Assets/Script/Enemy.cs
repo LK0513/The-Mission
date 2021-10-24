@@ -6,24 +6,25 @@ public class Enemy : MonoBehaviour
 {
     public float walkSpeed;
     public bool canPatrol;
+    //public bool turn;
 
     public Rigidbody2D rb;
-    public BoxCollider2D bc;
+    //public BoxCollider2D bc;
+
     [SerializeField] private LayerMask lm;
     void Start()
     {
         canPatrol = true;
-        
+       
     }
 
     void Update()
     {
-        RaycastHit2D rc = Physics2D.BoxCast(bc.bounds.min, bc.bounds.size, 0f, Vector2.down, 0.3f, lm);
         if (canPatrol)
         {
             Patrol();
         }
-        if(rc.collider == null)
+        if (ShouldTurn())
         {
             Flip();
         }
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
 
     void Patrol()
     {
-        rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        transform.Translate(Vector2.left * Time.deltaTime * walkSpeed);
     }
 
     void Flip()
@@ -41,5 +42,30 @@ public class Enemy : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         walkSpeed *= -1;
         canPatrol = true;
-    }    
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position, Vector2.down, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.left, Color.red);
+    }
+
+    bool ShouldTurn()
+    {
+        bool turn;
+        RaycastHit2D rcV = Physics2D.Raycast(transform.position, Vector2.down, 1f, lm);
+        RaycastHit2D rcHL = Physics2D.Raycast(transform.position, Vector2.left, 1f, lm);
+        RaycastHit2D rcHR = Physics2D.Raycast(transform.position, Vector2.right, 1f, lm);
+
+        if (rcV.collider == null || rcHL.collider != null || rcHR.collider != null)
+        {
+            turn = true;
+        }
+        else
+        {
+            turn = false;
+        }
+
+        return turn;
+    }
 }
