@@ -50,7 +50,7 @@ public class move : MonoBehaviour
             //counter++;
             transform.Translate(Vector2.left * Time.deltaTime * moves);
             characterScale.x = 1;
-            
+
         }
         if (Input.GetKey(KeyCode.D))
         {

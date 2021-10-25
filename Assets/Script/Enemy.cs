@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float walkSpeed;
     public bool canPatrol;
+    public bool isHit = false;
     //public bool turn;
 
     public Rigidbody2D rb;
@@ -29,6 +30,11 @@ public class Enemy : MonoBehaviour
             Flip();
         }
 
+        if(isHit)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     void Patrol()
@@ -48,6 +54,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.DrawRay(transform.position, Vector2.down, Color.blue);
         Debug.DrawRay(transform.position, Vector2.left, Color.red);
+        Debug.DrawRay(transform.position, Vector2.right, Color.red);
     }
 
     bool ShouldTurn()
