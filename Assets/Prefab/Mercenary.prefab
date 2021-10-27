@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5374365449077353557}
   - component: {fileID: 5374365449077353562}
   - component: {fileID: 5374365449077353559}
-  - component: {fileID: 5374365449077353563}
   - component: {fileID: 5374365449077353558}
   - component: {fileID: 5374365449077353556}
+  - component: {fileID: 5374365449077353563}
+  - component: {fileID: -5912420789875090983}
   m_Layer: 0
   m_Name: Mercenary
   m_TagString: Player
@@ -108,26 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5374365449077353563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5374365449077353560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29311e8af837a024ca6948fc0dd1a329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lm:
-    serializedVersion: 2
-    m_Bits: 64
-  moves: 5
-  jumpS: 10
-  mersenary: {fileID: 21300000, guid: 33d55527d681d12419080e4233ab337b, type: 3}
-  footstep: {fileID: 0}
-  walkA: {fileID: 5374365449077353558}
 --- !u!95 &5374365449077353558
 Animator:
   serializedVersion: 3
@@ -173,3 +154,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 2.4}
   m_EdgeRadius: 0
+--- !u!114 &5374365449077353563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374365449077353560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29311e8af837a024ca6948fc0dd1a329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lm:
+    serializedVersion: 2
+    m_Bits: 64
+  moves: 5
+  jumpS: 10
+  mersenary: {fileID: 21300000, guid: 33d55527d681d12419080e4233ab337b, type: 3}
+  footstep: {fileID: 0}
+  DeathDetector: {fileID: 0}
+--- !u!114 &-5912420789875090983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374365449077353560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407545e7ff39935448ceed5f23acfc42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalStamina: 80
+  stamina: 0
+  staminaBar: {fileID: 0}

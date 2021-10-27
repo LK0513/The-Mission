@@ -10,13 +10,13 @@ public class move : MonoBehaviour
     [SerializeField] private LayerMask lm;
     public float moves = 5;
     public float jumpS = 10;
-
-    int counter = 0;
-
+    
     //visuals
     public Sprite mersenary;
     public AudioSource footstep;
     private Animator playerAnimation;
+    //flip
+    private bool faceRight = true;
 
     //sprint
     public static bool isRunning;
@@ -40,26 +40,14 @@ public class move : MonoBehaviour
 
     void Update()
     {
-        
-        //GetComponent<SpriteRenderer>().sprite = mersenary;
-        Vector3 characterScale = transform.localScale;
-        
         //move
-        if (Input.GetKey(KeyCode.A))
-        {
-            //counter++;
-            transform.Translate(Vector2.left * Time.deltaTime * moves);
-            characterScale.x = 1;
-
-        }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector2.right * Time.deltaTime * moves);
-            characterScale.x = -1;
         }
 
         //sprint
-        if(isRunning)
+        if (isRunning)
         {
             moves = 10;
         }
@@ -80,25 +68,53 @@ public class move : MonoBehaviour
         {
             playerAnimation.SetBool("stand", false);
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else
         {
-            //jump
+            //stand
+            playerAnimation.SetBool("stand", true);
+        }
+
+        //jump
+        if (Input.GetKey(KeyCode.Space))
+        {
+            
             playerAnimation.SetBool("onGround", false);
         }
         else
         {
             //stand
-            playerAnimation.SetBool("stand", true);
             playerAnimation.SetBool("onGround", true);
         }
 
-        //counter = 0;
-        transform.localScale = characterScale;
+        //flip
+        if (Input.GetKey(KeyCode.D) && !faceRight)
+        {
+            Flip();
+        }
+        else if (Input.GetKey(KeyCode.A) && faceRight)
+        {
+            Flip();
+        }
+
 
         //move death bar with player
         DeathDetector.transform.position = new Vector2(transform.position.x, DeathDetector.transform.position.y);
-            
     }
+
+    void Flip()
+    {
+        faceRight = !faceRight;
+        transform.Rotate(0, 180, 0);
+        /*
+        Vector2 characterScale = transform.localScale;
+        characterScale.x *= -1;
+
+        transform.localScale = characterScale;
+        */
+    }
+
+
+    //jump
     private bool IsGrounded()
     {
         RaycastHit2D rc = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.1f, lm);
@@ -106,6 +122,8 @@ public class move : MonoBehaviour
         return rc.collider != null; 
     }
 
+
+    //respawn
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Death")

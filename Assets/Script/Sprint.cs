@@ -15,7 +15,7 @@ public class Sprint : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && stamina > 0 )
+        if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
         {
             move.isRunning = true;
             stamina -= 0.5f;
