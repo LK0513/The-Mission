@@ -171,7 +171,6 @@ MonoBehaviour:
     m_Bits: 64
   moves: 5
   jumpS: 10
-  mersenary: {fileID: 21300000, guid: 33d55527d681d12419080e4233ab337b, type: 3}
   footstep: {fileID: 0}
   DeathDetector: {fileID: 0}
 --- !u!114 &-5912420789875090983

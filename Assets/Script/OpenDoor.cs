@@ -19,5 +19,6 @@ public class OpenDoor : MonoBehaviour
         {
             door.SetBool("havecard", true);
         }
+
     }
 }

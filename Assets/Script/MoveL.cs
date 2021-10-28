@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class move : MonoBehaviour 
+public class MoveL : MonoBehaviour
 {
     //move
     private Rigidbody2D rb;
@@ -10,9 +10,8 @@ public class move : MonoBehaviour
     [SerializeField] private LayerMask lm;
     public float moves = 5;
     public float jumpS = 10;
-    
+
     //visuals
-    public Sprite mersenary;
     public AudioSource footstep;
     private Animator playerAnimation;
     //flip
@@ -33,7 +32,6 @@ public class move : MonoBehaviour
     }
     private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = mersenary;
         playerAnimation = GetComponent<Animator>();
         respawnPoint = transform.position;
     }
@@ -43,6 +41,7 @@ public class move : MonoBehaviour
         //move
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
         {
+            //left
             transform.Translate(Vector2.right * Time.deltaTime * moves);
         }
 
@@ -77,7 +76,7 @@ public class move : MonoBehaviour
         //jump
         if (Input.GetKey(KeyCode.Space))
         {
-            
+
             playerAnimation.SetBool("onGround", false);
         }
         else
@@ -87,11 +86,11 @@ public class move : MonoBehaviour
         }
 
         //flip
-        if (Input.GetKey(KeyCode.D) && !faceRight)
+        if (Input.GetKey(KeyCode.D) && faceRight)
         {
             Flip();
         }
-        else if (Input.GetKey(KeyCode.A) && faceRight)
+        else if (Input.GetKey(KeyCode.A) && !faceRight)
         {
             Flip();
         }
@@ -119,20 +118,20 @@ public class move : MonoBehaviour
     {
         RaycastHit2D rc = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.1f, lm);
         //if not null, hit the ground
-        return rc.collider != null; 
+        return rc.collider != null;
     }
 
 
     //respawn
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Death")
+        if (collision.tag == "Death")
         {
             //respawn player to the save point
             transform.position = respawnPoint;
-            
+
         }
-        else if(collision.tag == "Respawn")
+        else if (collision.tag == "Respawn")
         {
             respawnPoint = transform.position;
         }

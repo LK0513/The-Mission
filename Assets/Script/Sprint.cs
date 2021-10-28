@@ -17,12 +17,14 @@ public class Sprint : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
         {
-            move.isRunning = true;
+            MoveR.isRunning = true;
+            MoveL.isRunning = true;
             stamina -= 0.5f;
         }
         else
         {
-            move.isRunning = false;
+            MoveR.isRunning = false;
+            MoveL.isRunning = false;
         }
 
         if(stamina < totalStamina && !Input.GetKey(KeyCode.LeftShift))
