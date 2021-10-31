@@ -43,6 +43,14 @@ public class MoveR : MonoBehaviour
         {
             //right
             transform.Translate(Vector2.right * Time.deltaTime * moves);
+            if(!footstep.isPlaying && IsGrounded())
+            {
+                footstep.Play();
+            }
+        }
+        else
+        {
+            footstep.Stop();
         }
 
         //sprint
@@ -59,6 +67,8 @@ public class MoveR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.velocity = Vector2.up * jumpS;
+            footstep.Stop();
+            AudioManager.PlaySound("jump");
         }
 
         //Animation

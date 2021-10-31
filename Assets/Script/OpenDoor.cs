@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OpenDoor : MonoBehaviour
 {
@@ -17,10 +18,19 @@ public class OpenDoor : MonoBehaviour
     }
         private void OnCollisionEnter2D(Collision2D collision)
     {
-        counter++;
-        if (collision.gameObject.CompareTag("Player") && card && counter == 1)
+        if (collision.gameObject.CompareTag("Player") && card)
         {
             door.SetBool("havecard", true);
+            card = false;
+
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                AudioManager.PlaySound("unlock");
+            }
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                AudioManager.PlaySound("gate");
+            }
         }
     }
     private void Update()

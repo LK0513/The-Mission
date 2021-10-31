@@ -11,6 +11,8 @@ public class showdetail : MonoBehaviour
         if(collision.tag == "Player")
         {
             note.enabled = true;
+
+            AudioManager.PlaySound("paper");
         }
     }
 

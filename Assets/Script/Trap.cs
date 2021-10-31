@@ -13,7 +13,6 @@ public class Trap : MonoBehaviour
     
     void OnEnable()
     {
-        //if()
         rb.WakeUp();
     }
 }

@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
 
         if(isHit)
         {
+            AudioManager.PlaySound("Mdeath");
             Destroy(gameObject);
         }
 

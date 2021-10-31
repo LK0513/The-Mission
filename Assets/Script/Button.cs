@@ -12,14 +12,13 @@ public class Button : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && counter == 1)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - 0.15f);
+            
+            AudioManager.PlaySound("button");
+            AudioManager.PlaySound("crash");
         }
         if(ceiling != null)
         {
             Destroy(ceiling);
         }
-    }
-    void Update()
-    {
-        
     }
 }

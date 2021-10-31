@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
+
+            AudioManager.PlaySound("shoot");
         }
 
 
