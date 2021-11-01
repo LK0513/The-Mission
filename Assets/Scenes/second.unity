@@ -11960,6 +11960,10 @@ PrefabInstance:
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5374365449077353563, guid: dccac05535f2f0c4fb55a629908ceb01, type: 3}
+      propertyPath: footstep
+      value: 
+      objectReference: {fileID: 2040902676}
+    - target: {fileID: 5374365449077353563, guid: dccac05535f2f0c4fb55a629908ceb01, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -11991,7 +11995,7 @@ MonoBehaviour:
     m_Bits: 64
   moves: 5
   jumpS: 17
-  footstep: {fileID: 0}
+  footstep: {fileID: 2040902676}
   DeathDetector: {fileID: 659963730}
 --- !u!1001 &889508193
 PrefabInstance:

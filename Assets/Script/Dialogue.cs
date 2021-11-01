@@ -27,18 +27,8 @@ public class Dialogue : MonoBehaviour
         //Vector2 left = new Vector2(420, transform.position.y);
         //float x = transform.position.x;
         counter++;
-        if (counter == 200)
+        if (counter == 400)
         {
-            /*
-            if(x == 420)
-            {
-                textDisplay.transform.position = right;
-            }
-            else if (x == 736)
-            {
-
-                textDisplay.transform.position = left;
-            }*/
             Next();
             counter = 0;
         }
